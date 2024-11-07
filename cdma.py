@@ -1,6 +1,7 @@
 import random
 import numpy as np
 
+
 def welsh_code_generator(order):
     if order == 1:
         return np.array([[1]])
@@ -9,12 +10,14 @@ def welsh_code_generator(order):
     bottom = np.hstack((prev, -prev))
     return np.vstack((top, bottom))
 
+
 def welsh_code_list(n):
     order = 1
     while order < n:
         order *= 2
-    codes = welsh_code_generator(n)
+    codes = welsh_code_generator(order)
     return codes[:n, :]
+
 
 def simulate(n, codes):
     bits = len(codes[0])
@@ -42,6 +45,7 @@ def simulate(n, codes):
         else:
             signal = "nothing"
         print(f"{signal} is read from station {i+1}")
+
 
 n = int(input("number of stations: "))
 codes = welsh_code_list(n)
